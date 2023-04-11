@@ -22,6 +22,8 @@ import com.dkit.oop.sd2.DAOs.UserDaoInterface;
 import com.dkit.oop.sd2.DTOs.User;
 import com.dkit.oop.sd2.Exceptions.DaoException;
 import java.util.List;
+import java.util.Scanner;
+
 
 public class App {
     public static void main(String[] args) {
@@ -53,33 +55,29 @@ public class App {
                 for (User user : users)
                     System.out.println("Player: " + user.toString());
             }
-//
-//            // test dao - with username and password that we know are present in the database
-//            System.out.println("\nCall: findUserByUsernamePassword()");
-//            String username = "smithj";
-//            String password = "password";
-//            User user = IUserDao.findUserByUsernamePassword(username, password);
-//
-//            if( user != null ) // null returned if userid and password not valid
-//                System.out.println("User found: " + user);
-//            else
-//                System.out.println("Username with that password not found");
-//
-//            // test dao - with an invalid username (i.e. not in database)
-//            username = "madmax";
-//            password = "thunderdome";
-//            user = IUserDao.findUserByUsernamePassword(username, password);
-//            if(user != null)
-//                System.out.println("Username: " + username + " was found: " + user);
-//            else
-//                System.out.println("Username: " + username + ", password: " + password +" is not valid.");
-//        }
-//        catch( DaoException e )
-//        {
-//            e.printStackTrace();
-//        }
+
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
+
+        try {
+            System.out.println("\nCall findUserById()");
+            System.out.println("Enter ID: ");
+            Scanner keyboard = new Scanner(System.in);
+            int userId = keyboard.nextInt();  // read user input
+            User user = IUserDao.findUserById(userId);     // call a method in the DAO with the user input as argument
+
+            if (user == null)
+                System.out.println("There is no User with that ID");
+            else {
+                System.out.println("Player: " + user.toString());
+            }
+
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
     }
 }

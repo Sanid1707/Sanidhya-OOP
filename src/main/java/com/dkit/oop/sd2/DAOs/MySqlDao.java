@@ -27,7 +27,7 @@ public class MySqlDao
         {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, username, password);
-            System.out.println("Connection successful hai lodu");
+//            System.out.println("Connection successful hai lodu");
         }
         catch (ClassNotFoundException e)
         {
