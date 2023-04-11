@@ -23,10 +23,9 @@ import com.dkit.oop.sd2.DTOs.User;
 import com.dkit.oop.sd2.Exceptions.DaoException;
 import java.util.List;
 
-public class App
-{
-    public static void main(String[] args)
-    {
+public class App {
+    public static void main(String[] args) {
+//        App app = new App();
         UserDaoInterface IUserDao = new MySqlUserDao();  //"IUserDao" -> "I" stands for for
 
 //        // Notice that the userDao reference is an Interface type.
@@ -44,41 +43,43 @@ public class App
 //        // the interface called "UserDaoInterface", as the code uses
 //        // only references of the interface type to access the DAO methods.
 
-        try
-        {
+        try {
             System.out.println("\nCall findAllUsers()");
             List<User> users = IUserDao.findAllUsers();     // call a method in the DAO
 
-            if( users.isEmpty() )
+            if (users.isEmpty())
                 System.out.println("There are no Users");
             else {
                 for (User user : users)
-                    System.out.println("User: " + user.toString());
+                    System.out.println("Player: " + user.toString());
             }
-
-            // test dao - with username and password that we know are present in the database
-            System.out.println("\nCall: findUserByUsernamePassword()");
-            String username = "smithj";
-            String password = "password";
-            User user = IUserDao.findUserByUsernamePassword(username, password);
-
-            if( user != null ) // null returned if userid and password not valid
-                System.out.println("User found: " + user);
-            else
-                System.out.println("Username with that password not found");
-
-            // test dao - with an invalid username (i.e. not in database)
-            username = "madmax";
-            password = "thunderdome";
-            user = IUserDao.findUserByUsernamePassword(username, password);
-            if(user != null)
-                System.out.println("Username: " + username + " was found: " + user);
-            else
-                System.out.println("Username: " + username + ", password: " + password +" is not valid.");
-        }
-        catch( DaoException e )
-        {
-            e.printStackTrace();
+//
+//            // test dao - with username and password that we know are present in the database
+//            System.out.println("\nCall: findUserByUsernamePassword()");
+//            String username = "smithj";
+//            String password = "password";
+//            User user = IUserDao.findUserByUsernamePassword(username, password);
+//
+//            if( user != null ) // null returned if userid and password not valid
+//                System.out.println("User found: " + user);
+//            else
+//                System.out.println("Username with that password not found");
+//
+//            // test dao - with an invalid username (i.e. not in database)
+//            username = "madmax";
+//            password = "thunderdome";
+//            user = IUserDao.findUserByUsernamePassword(username, password);
+//            if(user != null)
+//                System.out.println("Username: " + username + " was found: " + user);
+//            else
+//                System.out.println("Username: " + username + ", password: " + password +" is not valid.");
+//        }
+//        catch( DaoException e )
+//        {
+//            e.printStackTrace();
+//        }
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
         }
     }
 }

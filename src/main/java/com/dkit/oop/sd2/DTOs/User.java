@@ -16,89 +16,104 @@ package com.dkit.oop.sd2.DTOs;
 
 public class User
 {
-    private int id;
+private int id;
     private String firstName;
     private String lastName;
-    private String username;
-    private String password;
+    private String position;
+    private String nationality;
+    private int salary;
+    private int age;
 
-    public User(int userId, String firstName, String lastName, String username, String password)
+    public User(int id, String firstName, String lastName, String position, String nationality, int salary , int age)
     {
-        this.id = userId;
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
-        this.password = password;
+        this.position = position;
+        this.salary = salary;
+        this.age = age;
     }
 
-    public User( String firstName, String lastName, String username, String password)
+    public User(String firstName, String lastName, String position, int salary ,int age)
     {
         this.id = 0;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
-        this.password = password;
+        this.position = position;
+        this.salary = salary;
+        this.age = age;
     }
 
     public User()
     {
     }
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
-    public String getFirstName()
-    {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-
-    public String getLastName()
-    {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName)
-    {
+    public String getPosition() {
+        return position;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getUsername()
-    {
-        return username;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public void setUsername(String username)
-    {
-        this.username = username;
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
-    public String getPassword()
-    {
-        return password;
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
-    public void setPassword(String password)
-    {
-        this.password = password;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
-    public String toString()
-    {
-        return "User{" + "id=" + id + ", firstName=" + firstName + ", lastName=" +
-                lastName + ", username=" + username + ", password=" + password + '}';
+    public String toString() {
+        return "{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", position='" + position + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", salary=" + salary +
+                ", age=" + age +
+                '}';
     }
-
 }
