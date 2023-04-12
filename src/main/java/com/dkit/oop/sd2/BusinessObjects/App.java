@@ -21,6 +21,8 @@ import com.dkit.oop.sd2.DAOs.MySqlUserDao;
 import com.dkit.oop.sd2.DAOs.UserDaoInterface;
 import com.dkit.oop.sd2.DTOs.User;
 import com.dkit.oop.sd2.Exceptions.DaoException;
+
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,20 +32,6 @@ public class App {
 //        App app = new App();
         UserDaoInterface IUserDao = new MySqlUserDao();  //"IUserDao" -> "I" stands for for
 
-//        // Notice that the userDao reference is an Interface type.
-//        // This allows for the use of different concrete implementations.
-//        // e.g. we could replace the MySqlUserDao with an OracleUserDao
-//        // (accessing an Oracle Database)
-//        // without changing anything in the Interface.
-//        // If the Interface doesn't change, then none of the
-//        // code in this file that uses the interface needs to change.
-//        // The 'contract' defined by the interface will not be broken.
-//        // This means that this code is 'independent' of the code
-//        // used to access the database. (Reduced coupling).
-//
-//        // The Business Objects require that all User DAOs implement
-//        // the interface called "UserDaoInterface", as the code uses
-//        // only references of the interface type to access the DAO methods.
 
         try {
             System.out.println("\nCall findAllUsers()");
@@ -60,6 +48,8 @@ public class App {
             throw new RuntimeException(e);
         }
 
+
+        // Find a User by ID
         try {
             System.out.println("\nCall findUserById()");
             System.out.println("Enter ID: ");
@@ -76,7 +66,19 @@ public class App {
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
+        try {
+            System.out.println("\nCall deleteByID()");
+            System.out.println("Enter ID to delete: ");
+            Scanner keyboard = new Scanner(System.in);
+            int userId = keyboard.nextInt();
+            IUserDao.deleteByID(userId);
+            System.out.println("User with ID " + userId + " deleted successfully.");
 
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }

@@ -134,6 +134,17 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface
         return user;   // may be null
     }
 
+    @Override
+    public void deleteByID(int id) throws SQLException {
+        Connection connection = this.getConnection();
+        String SQL = "DELETE FROM player WHERE id = ?";
+        PreparedStatement ps = connection.prepareStatement(SQL);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+
+    }
+
+
 
 
 

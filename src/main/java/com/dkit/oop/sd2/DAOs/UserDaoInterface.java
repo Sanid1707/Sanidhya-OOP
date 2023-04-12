@@ -21,13 +21,15 @@ package com.dkit.oop.sd2.DAOs;
 
 import com.dkit.oop.sd2.DTOs.User;
 import com.dkit.oop.sd2.Exceptions.DaoException;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDaoInterface
 {
     public List<User> findAllUsers() throws DaoException;
     public User findUserById(int id) throws DaoException;
-
+    public void deleteByID(int id) throws SQLException;
 
 //    public User findUserByUsernamePassword(String username, String password) throws DaoException;
 
