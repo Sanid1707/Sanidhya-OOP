@@ -30,6 +30,9 @@ public interface UserDaoInterface
     public List<User> findAllUsers() throws DaoException;
     public User findUserById(int id) throws DaoException;
     public void deleteByID(int id) throws SQLException;
+    public void insert(User player) throws SQLException;
+
+
 
 //    public User findUserByUsernamePassword(String username, String password) throws DaoException;
 

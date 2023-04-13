@@ -21,41 +21,72 @@ import com.dkit.oop.sd2.DAOs.MySqlUserDao;
 import com.dkit.oop.sd2.DAOs.UserDaoInterface;
 import com.dkit.oop.sd2.DTOs.User;
 import com.dkit.oop.sd2.Exceptions.DaoException;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 import com.dkit.oop.sd2.services.*;
+import java.util.*;
 
 
 
+public class App
+{
+    private static final Scanner keyboard = new Scanner(System.in);
 
+    public static void main( String[] args ) throws DaoException {
+        System.out.println("Welcome to Foot ball player - an app to browse for and add your own recipes!");
 
-public class App {
-    public static void main(String[] args) throws DaoException {
-//        App app = new App();
-      FindAllPlayer findAllPlayer = new FindAllPlayer();
-      findAllPlayer.findAllUsers();
+        boolean exit = false;
 
+        String userInput;
 
+        while(!exit)
+        {
+            printMainMenuInstructions();
+            final Scanner keyboard = new Scanner(System.in);
+            userInput = keyboard.nextLine().trim();
+//            userInput = InputHandler.getAndValidateEnumOptions(Validation.WHOLE_NUMBER_REGEX, MainMenuOptions.values().length, "(0-2)");
+            int choice = Integer.parseInt(userInput);
 
-//
-//
+            switch (choice)
+            {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                    FindAllPlayer findAllPlayer = new FindAllPlayer();
+                    findAllPlayer.findAllUsers();
+                    break;
+                case 2:
+                    FindById findById = new FindById();
+                    findById.findUserById();
+                    break;
 
-//        try {
-//            System.out.println("\nCall deleteByID()");
-//            System.out.println("Enter ID to delete: ");
-//            Scanner keyboard = new Scanner(System.in);
-//            int userId = keyboard.nextInt();
-//            IUserDao.deleteByID(userId);
-//            System.out.println("User with ID " + userId + " deleted successfully.");
-//
-//        } catch (DaoException e) {
-//            throw new RuntimeException(e);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+                case 3:
+                    DeleteById deleteById = new DeleteById();
+                    deleteById.deleteById();
+                    break;
 
+                case 4:
+                    System.out.println("add");
+                    break;
+                default:
+                    System.out.println("Invalid Input. Try again.");
+                    break;
+            }
+        }
+    }
+
+    private static void printMainMenuInstructions()
+    {
+        System.out.println("\nPress:");
+        System.out.println("0. Exit App");
+        System.out.println("1. display all players in the database");
+        System.out.println("2. find by id " );
+        System.out.println("3. delete " );
+        System.out.println("4. add " );
 
     }
+
 }
+
