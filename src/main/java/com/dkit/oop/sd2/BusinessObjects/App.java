@@ -25,60 +25,36 @@ import com.dkit.oop.sd2.Exceptions.DaoException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
+import com.dkit.oop.sd2.services.*;
+
+
+
 
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DaoException {
 //        App app = new App();
-        UserDaoInterface IUserDao = new MySqlUserDao();  //"IUserDao" -> "I" stands for for
+      FindAllPlayer findAllPlayer = new FindAllPlayer();
+      findAllPlayer.findAllUsers();
 
 
-        try {
-            System.out.println("\nCall findAllUsers()");
-            List<User> users = IUserDao.findAllUsers();     // call a method in the DAO
 
-            if (users.isEmpty())
-                System.out.println("There are no Users");
-            else {
-                for (User user : users)
-                    System.out.println("Player: " + user.toString());
-            }
+//
+//
 
-        } catch (DaoException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        // Find a User by ID
-        try {
-            System.out.println("\nCall findUserById()");
-            System.out.println("Enter ID: ");
-            Scanner keyboard = new Scanner(System.in);
-            int userId = keyboard.nextInt();  // read user input
-            User user = IUserDao.findUserById(userId);     // call a method in the DAO with the user input as argument
-
-            if (user == null)
-                System.out.println("There is no User with that ID");
-            else {
-                System.out.println("Player: " + user.toString());
-            }
-
-        } catch (DaoException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            System.out.println("\nCall deleteByID()");
-            System.out.println("Enter ID to delete: ");
-            Scanner keyboard = new Scanner(System.in);
-            int userId = keyboard.nextInt();
-            IUserDao.deleteByID(userId);
-            System.out.println("User with ID " + userId + " deleted successfully.");
-
-        } catch (DaoException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            System.out.println("\nCall deleteByID()");
+//            System.out.println("Enter ID to delete: ");
+//            Scanner keyboard = new Scanner(System.in);
+//            int userId = keyboard.nextInt();
+//            IUserDao.deleteByID(userId);
+//            System.out.println("User with ID " + userId + " deleted successfully.");
+//
+//        } catch (DaoException e) {
+//            throw new RuntimeException(e);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
 
 
     }
