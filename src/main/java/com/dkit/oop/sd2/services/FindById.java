@@ -12,7 +12,7 @@ public class FindById
 {
     public void findUserById()
     {
-        UserDaoInterface IUserDao = new MySqlUserDao();  //"IUserDao" -> "I" stands for for
+        UserDaoInterface IUserDao = new MySqlUserDao();
         // Find a User by ID
         try {
             System.out.println("\nCall findUserById()");

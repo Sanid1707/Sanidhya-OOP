@@ -145,7 +145,7 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface
     }
 
     @Override
-    public void insert(User player) throws SQLException {
+    public void insertPlayer(User player) throws SQLException {
         Connection connection = this.getConnection();
         String SQL = "INSERT INTO player (id, first_name, last_name, position, nationality, salary, age) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = connection.prepareStatement(SQL);

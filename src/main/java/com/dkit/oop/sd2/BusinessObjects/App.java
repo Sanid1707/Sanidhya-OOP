@@ -68,7 +68,8 @@ public class App
                     break;
 
                 case 4:
-                    System.out.println("add");
+                    InsertPlayer insertPlayer = new InsertPlayer();
+                    insertPlayer.insertPlayer();
                     break;
                 default:
                     System.out.println("Invalid Input. Try again.");
