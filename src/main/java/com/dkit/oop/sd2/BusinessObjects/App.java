@@ -42,7 +42,7 @@ public class App
 
         while(!exit)
         {
-            printMainMenuInstructions();
+            printPlayerMenuInstructions();
             final Scanner keyboard = new Scanner(System.in);
             userInput = keyboard.nextLine().trim();
 //            userInput = InputHandler.getAndValidateEnumOptions(Validation.WHOLE_NUMBER_REGEX, MainMenuOptions.values().length, "(0-2)");
@@ -54,17 +54,23 @@ public class App
                     exit = true;
                     break;
                 case 1:
-                    FindAllPlayer findAllPlayer = new FindAllPlayer();
-                    findAllPlayer.findAllUsers();
+//                    FindAllPlayer findAllPlayer = new FindAllPlayer();
+//                    findAllPlayer.findAllUsers();
+                    FindAllClubs findAllClubs = new FindAllClubs();
+                    findAllClubs.findAllClubs();
                     break;
                 case 2:
-                    FindById findById = new FindById();
-                    findById.findUserById();
+//                    FindById findById = new FindById();
+//                    findById.findUserById();
+                    FindClubById findClubById = new FindClubById();
+                    findClubById.findClubById();
                     break;
 
                 case 3:
-                    DeleteById deleteById = new DeleteById();
-                    deleteById.deleteById();
+//                    DeleteById deleteById = new DeleteById();
+//                    deleteById.deleteById();
+                    DeleteClubById deleteClubById = new DeleteClubById();
+                    deleteClubById.deleteClubById();
                     break;
 
                 case 4:
@@ -78,7 +84,7 @@ public class App
         }
     }
 
-    private static void printMainMenuInstructions()
+    private static void printPlayerMenuInstructions()
     {
         System.out.println("\nPress:");
         System.out.println("0. Exit App");
@@ -86,8 +92,13 @@ public class App
         System.out.println("2. find by id " );
         System.out.println("3. delete " );
         System.out.println("4. add " );
+        System.out.println("5. Find all Players as JSON " );
+        System.out.println("6. Find Players by id as JSON" );
 
     }
+
+
+
 
 }
 
