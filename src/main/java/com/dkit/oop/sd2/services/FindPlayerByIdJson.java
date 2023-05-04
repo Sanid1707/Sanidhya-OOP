@@ -1,6 +1,5 @@
 package com.dkit.oop.sd2.services;
 
-
 import com.dkit.oop.sd2.DAOs.PlayerDAO;
 import com.dkit.oop.sd2.DAOs.PlayerDaoInterface;
 import com.dkit.oop.sd2.DTOs.Player;
@@ -9,12 +8,11 @@ import com.google.gson.Gson;
 
 import java.util.Scanner;
 
-public class FindById
-{
-    public void findUserById()
+public class FindPlayerByIdJson {
+    public void findPlayerByIdJson()
     {
         PlayerDaoInterface IUserDao = new PlayerDAO();
-
+        Gson gson = new Gson();
         // Find a User by ID
         try {
             System.out.println("\nCall findUserById()");
@@ -26,7 +24,7 @@ public class FindById
             if (player == null)
                 System.out.println("There is no User with that ID");
             else {
-                System.out.println("Player:" + player.toString());
+                System.out.println("Player: " + gson.toJson(player));
             }
 
         } catch (DaoException e) {

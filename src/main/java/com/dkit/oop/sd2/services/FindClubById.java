@@ -9,14 +9,14 @@ import java.util.Scanner;
 
 public class FindClubById {
    public void findClubById() {
-      ClubInterface IUserDao = new ClubDAO();
+      ClubInterface clubDAO = new ClubDAO();
         // Find a Club by ID
         try {
             System.out.println("\nCall findClubById()");
             System.out.println("Enter ID: ");
             Scanner keyboard = new Scanner(System.in);
-            int userId = keyboard.nextInt();  // read user input
-            Club club = IUserDao.findClubById(userId);     // call a method in the DAO with the user input as argument
+            int clubId = keyboard.nextInt();  // read user input
+            Club club = clubDAO.findClubById(clubId);     // call a method in the DAO with the user input as argument
 
             if (club == null)
                 System.out.println("There is no Club with that ID");

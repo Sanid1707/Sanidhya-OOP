@@ -17,23 +17,20 @@ package com.dkit.oop.sd2.BusinessObjects;
  * to create the required MySQL user_database and User table.
  */
 
-import com.dkit.oop.sd2.DAOs.MySqlUserDao;
-import com.dkit.oop.sd2.DAOs.UserDaoInterface;
-import com.dkit.oop.sd2.DTOs.User;
+import com.dkit.oop.sd2.DTOs.Club;
+import com.dkit.oop.sd2.DTOs.Player;
 import com.dkit.oop.sd2.Exceptions.DaoException;
-import java.sql.SQLException;
-import java.util.List;
+
 import java.util.Scanner;
 import com.dkit.oop.sd2.services.*;
-import java.util.*;
-
 
 
 public class App
 {
     private static final Scanner keyboard = new Scanner(System.in);
 
-    public static void main( String[] args ) throws DaoException {
+    public static <FindAllPlayerAsJson> void main(String[] args ) throws DaoException {
+
         System.out.println("Welcome to Foot ball player - an app to browse for and add your own recipes!");
 
         boolean exit = false;
@@ -54,32 +51,69 @@ public class App
                     exit = true;
                     break;
                 case 1:
-//                    FindAllPlayer findAllPlayer = new FindAllPlayer();
-//                    findAllPlayer.findAllUsers();
-                    FindAllClubs findAllClubs = new FindAllClubs();
-                    findAllClubs.findAllClubs();
+                    FindAllPlayer findAllPlayer = new FindAllPlayer();
+                    findAllPlayer.findAllUsers();
+//                    FindAllClubs findAllClubs = new FindAllClubs();
+//                    findAllClubs.findAllClubs();
                     break;
                 case 2:
-//                    FindById findById = new FindById();
-//                    findById.findUserById();
-                    FindClubById findClubById = new FindClubById();
-                    findClubById.findClubById();
+                    FindById findById = new FindById();
+                    findById.findUserById();
+//                    FindClubById findClubById = new FindClubById();
+//                    findClubById.findClubById();
                     break;
 
                 case 3:
-//                    DeleteById deleteById = new DeleteById();
-//                    deleteById.deleteById();
-                    DeleteClubById deleteClubById = new DeleteClubById();
-                    deleteClubById.deleteClubById();
+                    DeleteById deleteById = new DeleteById();
+                    deleteById.deleteById();
+//                    DeleteClubById deleteClubById = new DeleteClubById();
+//                    deleteClubById.deleteClubById();
                     break;
 
                 case 4:
                     InsertPlayer insertPlayer = new InsertPlayer();
                     insertPlayer.insertPlayer();
                     break;
+
+                case 5:
+                    FindPlayerByJson findPlayerByJson = new FindPlayerByJson();
+                    findPlayerByJson.findAllPlayerJson();
+                    break;
+
+                case 6:
+                    FindPlayerByIdJson findPlayerByIdJson = new FindPlayerByIdJson();
+                    findPlayerByIdJson.findPlayerByIdJson();
+                    break;
                 default:
                     System.out.println("Invalid Input. Try again.");
                     break;
+
+                case 7:
+                    FindAllClubs findAllClubs = new FindAllClubs();
+                    findAllClubs.findAllClubs();
+                    break;
+                case 8:
+                    FindClubById findClubById = new FindClubById();
+                    findClubById.findClubById();
+                    break;
+                case 9:
+                    AddClubs addClubs = new AddClubs();
+                    addClubs.addClub();
+
+                    break;
+                case 10:
+                    DeleteClubById deleteClubById = new DeleteClubById();
+                    deleteClubById.deleteClubById();
+                    break;
+                case 11:
+                    FindAllClubsJson findAllClubsJson = new FindAllClubsJson();
+                    findAllClubsJson.findAllClubsJson();
+                    break;
+                case 12:
+                    FindClubByIdJson findClubByIdJson = new FindClubByIdJson();
+                    findClubByIdJson.findClubByIdJson();
+                    break;
+
             }
         }
     }
@@ -94,6 +128,14 @@ public class App
         System.out.println("4. add " );
         System.out.println("5. Find all Players as JSON " );
         System.out.println("6. Find Players by id as JSON" );
+        System.out.println("7.display all clubs in the database");
+        System.out.println("8.display  clubs in the database by id ");
+        System.out.println("9.add clubs to the database  ");
+        System.out.println("10.delete clubs  ");
+        System.out.println("11.Find all Clubs as JSON ");
+        System.out.println("12.Find Clubs by id as JSON ");
+
+
 
     }
 

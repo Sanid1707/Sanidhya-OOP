@@ -1,8 +1,8 @@
 package com.dkit.oop.sd2.services;
 
-import com.dkit.oop.sd2.DAOs.MySqlUserDao;
-import com.dkit.oop.sd2.DAOs.UserDaoInterface;
-import com.dkit.oop.sd2.DTOs.User;
+import com.dkit.oop.sd2.DAOs.PlayerDAO;
+import com.dkit.oop.sd2.DAOs.PlayerDaoInterface;
+import com.dkit.oop.sd2.DTOs.Player;
 import com.dkit.oop.sd2.Exceptions.DaoException;
 
 import java.util.List;
@@ -10,18 +10,19 @@ import java.util.List;
 public class FindAllPlayer
 
 {
-    UserDaoInterface IUserDao = new MySqlUserDao();  //"IUserDao" -> "I" stands for for
+    PlayerDaoInterface playerDAO = new PlayerDAO();
+   //"IUserDao" -> "I" stands for for
       public void findAllUsers() throws DaoException
       {
           try {
               System.out.println("\nCall findAllUsers()");
-              List<User> users = IUserDao.findAllUsers();     // call a method in the DAO
+              List<Player> players = playerDAO.findAllUsers();     // call a method in the DAO
 
-              if (users.isEmpty())
+              if (players.isEmpty())
                   System.out.println("There are no Users");
               else {
-                  for (User user : users)
-                      System.out.println("Player: " + user.toString());
+                  for (Player player : players)
+                      System.out.println("Player: " + player.toString());
               }
 
           } catch (DaoException e) {

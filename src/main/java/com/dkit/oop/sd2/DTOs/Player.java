@@ -14,7 +14,7 @@ package com.dkit.oop.sd2.DTOs;
  * between the Data Access Layer (DAOs) and the Business Layer objects.
  */
 
-public class User
+public class Player
 {
 private int id;
     private String firstName;
@@ -22,91 +22,78 @@ private int id;
     private String position;
     private String nationality;
     private int salary;
+
     private int age;
 
-    public User(int id, String firstName, String lastName, String position, String nationality, int salary , int age)
-    {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.position = position;
-        this.salary = salary;
-        this.age = age;
-    }
-
-    public User(String firstName, String lastName, String position, int salary ,int age)
-    {
-        this.id = 0;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.position = position;
-        this.salary = salary;
-        this.age = age;
-    }
-
-    public User()
-    {
-    }
+    private int clubId;
 
     public int getId() {
         return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getNationality() {
+        return nationality;
     }
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
 
+    public int getSalary() {
+        return salary;
+    }
+
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
+    public int getClubId() {
+        return clubId;
+    }
+
+    public void setClubId(int clubId) {
+        this.clubId = clubId;
+    }
+
     @Override
     public String toString() {
-        return "{" +
+        return "Player{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -114,6 +101,18 @@ private int id;
                 ", nationality='" + nationality + '\'' +
                 ", salary=" + salary +
                 ", age=" + age +
+                ", clubId=" + clubId +
                 '}';
+    }
+
+    public Player(int id, String firstName, String lastName, String position, String nationality, int salary, int age, int clubId) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.position = position;
+        this.nationality = nationality;
+        this.salary = salary;
+        this.age = age;
+        this.clubId = clubId;
     }
 }

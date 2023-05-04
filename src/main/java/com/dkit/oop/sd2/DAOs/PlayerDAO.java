@@ -16,35 +16,35 @@ package com.dkit.oop.sd2.DAOs;
  */
 
 
-import com.dkit.oop.sd2.DTOs.User;
+import com.dkit.oop.sd2.DTOs.Player;
 import com.dkit.oop.sd2.Exceptions.DaoException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
-public class MySqlUserDao extends MySqlDao implements UserDaoInterface
+public class PlayerDAO extends MySqlDao implements PlayerDaoInterface
 {
 
-    List<User> usersList = new ArrayList<>();
+    List<Player> usersList = new ArrayList<>();
+    HashMap<Integer, Player> playerMap = new HashMap<Integer, Player>(); //Cache implemented, feature 6
 
     @Override
-    public List<User> findAllUsers() throws DaoException
+    public List<Player> findAllUsers() throws DaoException
     {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;
-        List<User> usersList = new ArrayList<>();
+        List<Player> usersList = new ArrayList<>();
 
         try
         {
             //Get connection object using the methods in the super class (MySqlDao.java)...
             connection = this.getConnection();
 
-            String query = "SELECT * FROM player";
+            String query = "SELECT * FROM players";
             ps = connection.prepareStatement(query);
 
             //Using a PreparedStatement to execute SQL...
@@ -58,7 +58,8 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface
                 int salary = resultSet.getInt("salary");
                 String lastname = resultSet.getString("last_name");
                 String firstname = resultSet.getString("first_name");
-                User u = new User(userId, firstname, lastname, position, nationality, salary, age);
+                int clubId = resultSet.getInt("club_id");
+                Player u = new Player(userId, firstname, lastname, position, nationality, salary, age, clubId);
                 usersList.add(u);
             }
         } catch (SQLException e)
@@ -89,55 +90,66 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface
     }
 
     @Override
-    public User findUserById(int userId) throws DaoException {
+    public Player findUserById(int userId) throws DaoException {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;
-        User user = null;
+        Player player = null;
 
-        try {
-            // Get connection object using the methods in the super class (MySqlDao.java)...
-            connection = this.getConnection();
-
-            String query = "SELECT * FROM player WHERE id = ?";
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, userId);
-
-            // Using a PreparedStatement to execute SQL...
-            resultSet = ps.executeQuery();
-            if (resultSet.next()) {
-                String position = resultSet.getString("position");
-                String nationality = resultSet.getString("nationality");
-                int age = resultSet.getInt("age");
-                int salary = resultSet.getInt("salary");
-                String lastname = resultSet.getString("last_name");
-                String firstname = resultSet.getString("first_name");
-                user = new User(userId, firstname, lastname, position, nationality, salary, age);
-            }
-        } catch (SQLException e) {
-            throw new DaoException("findUserById() " + e.getMessage());
-        } finally {
+        if(playerMap.containsKey(userId)){
+            System.out.println("From cache");
+            return playerMap.get(userId);
+        }
+        else {
             try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-                if (connection != null) {
-                    freeConnection(connection);
+                // Get connection object using the methods in the super class (MySqlDao.java)...
+                connection = this.getConnection();
+
+                String query = "SELECT * FROM players WHERE id = ?";
+                ps = connection.prepareStatement(query);
+                ps.setInt(1, userId);
+
+                // Using a PreparedStatement to execute SQL...
+                resultSet = ps.executeQuery();
+                if (resultSet.next()) {
+                    String position = resultSet.getString("position");
+                    String nationality = resultSet.getString("nationality");
+                    int age = resultSet.getInt("age");
+                    int salary = resultSet.getInt("salary");
+                    String lastname = resultSet.getString("last_name");
+                    String firstname = resultSet.getString("first_name");
+                    int clubId = resultSet.getInt("club_id");
+                    player = new Player(userId, firstname, lastname, position, nationality, salary, age, clubId);
                 }
             } catch (SQLException e) {
                 throw new DaoException("findUserById() " + e.getMessage());
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (ps != null) {
+                        ps.close();
+                    }
+                    if (connection != null) {
+                        freeConnection(connection);
+                    }
+                } catch (SQLException e) {
+                    throw new DaoException("findUserById() " + e.getMessage());
+                }
             }
+            playerMap.put(userId, player);
+            return player;   // may be null
+
         }
-        return user;   // may be null
+
+
     }
 
     @Override
     public void deleteByID(int id) throws SQLException {
         Connection connection = this.getConnection();
-        String SQL = "DELETE FROM player WHERE id = ?";
+        String SQL = "DELETE FROM players WHERE id = ?";
         PreparedStatement ps = connection.prepareStatement(SQL);
         ps.setInt(1, id);
         ps.executeUpdate();
@@ -145,9 +157,9 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface
     }
 
     @Override
-    public void insertPlayer(User player) throws SQLException {
+    public void insertPlayer(Player player) throws SQLException {
         Connection connection = this.getConnection();
-        String SQL = "INSERT INTO player (id, first_name, last_name, position, nationality, salary, age) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO players (id, first_name, last_name, position, nationality, salary, age) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = connection.prepareStatement(SQL);
         ps.setInt(1, player.getId());
         ps.setString(2, player.getFirstName());

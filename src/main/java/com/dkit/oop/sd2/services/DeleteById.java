@@ -1,8 +1,7 @@
 package com.dkit.oop.sd2.services;
 
-import com.dkit.oop.sd2.DAOs.MySqlUserDao;
-import com.dkit.oop.sd2.DAOs.UserDaoInterface;
-import com.dkit.oop.sd2.Exceptions.DaoException;
+import com.dkit.oop.sd2.DAOs.PlayerDAO;
+import com.dkit.oop.sd2.DAOs.PlayerDaoInterface;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class DeleteById {
     public  void deleteById()
     {
-        UserDaoInterface iUserDao = new MySqlUserDao();
+        PlayerDaoInterface iUserDao = new PlayerDAO();
         try {
             System.out.println("\nCall deleteByID()");
             System.out.println("Enter ID to delete: ");
