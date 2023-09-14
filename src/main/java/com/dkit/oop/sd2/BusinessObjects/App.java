@@ -31,7 +31,7 @@ public class App
 
     public static <FindAllPlayerAsJson> void main(String[] args ) throws DaoException {
 
-        System.out.println("Welcome to Foot ball player - an app to browse for and add your own recipes!");
+        System.out.println("Welcome to Foot ball player ");
 
         boolean exit = false;
 
@@ -53,21 +53,18 @@ public class App
                 case 1:
                     FindAllPlayer findAllPlayer = new FindAllPlayer();
                     findAllPlayer.findAllUsers();
-//                    FindAllClubs findAllClubs = new FindAllClubs();
-//                    findAllClubs.findAllClubs();
+
                     break;
                 case 2:
                     FindById findById = new FindById();
                     findById.findUserById();
-//                    FindClubById findClubById = new FindClubById();
-//                    findClubById.findClubById();
+
                     break;
 
                 case 3:
                     DeleteById deleteById = new DeleteById();
                     deleteById.deleteById();
-//                    DeleteClubById deleteClubById = new DeleteClubById();
-//                    deleteClubById.deleteClubById();
+
                     break;
 
                 case 4:

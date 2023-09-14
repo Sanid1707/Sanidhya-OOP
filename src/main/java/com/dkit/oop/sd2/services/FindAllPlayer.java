@@ -21,8 +21,21 @@ public class FindAllPlayer
               if (players.isEmpty())
                   System.out.println("There are no Users");
               else {
+//
+
+                  // Print table header
+                  System.out.format("%-4s%-15s%-15s%-15s%-15s%-10s%-5s%-6s%n",
+                          "ID", "First Name", "Last Name", "Position", "Nationality", "Salary", "Age", "Club ID");
+                  System.out.println("-------------------------------------------------------------------------------------");
+
+                  // Print each player's information
                   for (Player player : players)
-                      System.out.println("Player: " + player.toString());
+                  {
+                      System.out.format("%-4d%-15s%-15s%-15s%-15s%-10d%-5d%-6d%n",
+                              player.getId(), player.getFirstName(), player.getLastName(),
+                              player.getPosition(), player.getNationality(), player.getSalary(),
+                              player.getAge(), player.getClubId());
+                  }
               }
 
           } catch (DaoException e) {
@@ -31,3 +44,4 @@ public class FindAllPlayer
       }
 
 }
+
