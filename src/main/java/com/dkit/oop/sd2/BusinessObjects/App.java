@@ -126,10 +126,10 @@ public class App
         System.out.println("2. find by id " );
         System.out.println("3. delete " );
         System.out.println("4. add " );
-        System.out.println("5. Find all Players as JSON " );
-        System.out.println("6. Find Players by id as JSON" );
+        System.out.println("5. Display all Players as JSON " );
+        System.out.println("6. find Players by id as JSON" );
         System.out.println("7.display all clubs in the database");
-        System.out.println("8.display  clubs in the database by id ");
+        System.out.println("8.find  clubs in the database by id ");
         System.out.println("9.add clubs to the database  ");
         System.out.println("10.delete clubs  ");
         System.out.println("11.Find all Clubs as JSON ");

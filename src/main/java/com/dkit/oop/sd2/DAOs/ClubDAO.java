@@ -89,7 +89,7 @@ public class ClubDAO extends MySqlDao implements ClubInterface
             // Using a PreparedStatement to execute SQL...
             resultSet = ps.executeQuery();
             if (resultSet.next()) {
-                String name = resultSet.getString("club_id");
+                String name = resultSet.getString("name");
                 String jerseyColour = resultSet.getString("jersey_colour");
                 club = new Club(clubId, name, jerseyColour);
 
