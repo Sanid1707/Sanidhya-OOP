@@ -29,7 +29,7 @@ public class PlayerDAO extends MySqlDao implements PlayerDaoInterface
 {
 
     List<Player> usersList = new ArrayList<>();
-    HashMap<Integer, Player> playerMap = new HashMap<Integer, Player>(); //Cache implemented, feature 6
+    HashMap< Integer, Player> playerMap = new HashMap<Integer, Player>(); //Cache implemented, feature 6
 
     @Override
     public List<Player> findAllUsers() throws DaoException
@@ -172,6 +172,59 @@ public class PlayerDAO extends MySqlDao implements PlayerDaoInterface
 
 
     }
+//    public Player findPlayerByFirstName(String firstName) throws DaoException {
+//        Connection connection = null;
+//        PreparedStatement ps = null;
+//        ResultSet resultSet = null;
+//        Player player = null;
+//
+//        if (playerMap.containsKey(firstName)) {
+//            System.out.println("From cache");
+//            return playerMap.get(firstName);
+//        } else {
+//            try {
+//                // Get connection object using the methods in the super class (MySqlDao.java)...
+//                connection = this.getConnection();
+//
+//                String query = "SELECT * FROM players WHERE first_name = ?";
+//                ps = connection.prepareStatement(query);
+//                ps.setString(1, firstName);
+//
+//                // Using a PreparedStatement to execute SQL...
+//                resultSet = ps.executeQuery();
+//                if (resultSet.next()) {
+//                    String lastName = resultSet.getString("last_name");
+//                    String position = resultSet.getString("position");
+//                    String nationality = resultSet.getString("nationality");
+//                    int age = resultSet.getInt("age");
+//                    int salary = resultSet.getInt("salary");
+//                    int userId = resultSet.getInt("id");
+//                    int clubId = resultSet.getInt("club_id");
+//                    player = new Player(userId, firstName, lastName, position, nationality, salary, age, clubId);
+//                }
+//            } catch (SQLException e) {
+//                throw new DaoException("findPlayerByFirstName() " + e.getMessage());
+//            } finally {
+//                try {
+//                    if (resultSet != null) {
+//                        resultSet.close();
+//                    }
+//                    if (ps != null) {
+//                        ps.close();
+//                    }
+//                    if (connection != null) {
+//                        freeConnection(connection);
+//                    }
+//                } catch (SQLException e) {
+//                    throw new DaoException("findPlayerByFirstName() " + e.getMessage());
+//                }
+//            }
+//            if (player != null) {
+//                playerMap.put(firstName, player);
+//            }
+//            return player; // may be null
+//        }
+//    }
 
 
 

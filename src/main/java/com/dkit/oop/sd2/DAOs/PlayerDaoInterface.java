@@ -35,6 +35,8 @@ public interface PlayerDaoInterface {
 
     void insertPlayer(Player player) throws SQLException;
 
+//    Player findPlayerByFirstName(String firstName) throws SQLException;
+
 
 //    public User findUserByUsernamePassword(String username, String password) throws DaoException;
 
